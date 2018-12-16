@@ -1,0 +1,47 @@
+<svg id="Lager_1" data-name="Lager 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2048 2048">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 459px;
+        fill: #fff;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 40px;
+        font-family: HiraMaruPro-W4-83pv-RKSJ-H, Hiragino Maru Gothic Pro;
+      }
+
+      .cls-2 {
+        mask: url(#mask);
+      }
+
+      .cls-3 {
+        fill: #999;
+      }
+
+      .cls-4 {
+        fill: #858585;
+      }
+
+      .cls-5 {
+        filter: url(#luminosity-invert-noclip);
+      }
+    </style>
+    <filter id="luminosity-invert-noclip" x="111" y="38" width="1825" height="1825" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feColorMatrix values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0" result="invert"/>
+      <feFlood flood-color="#fff" result="bg"/>
+      <feBlend in="invert" in2="bg"/>
+    </filter>
+    <mask id="mask" x="111" y="38" width="1825" height="1825" maskUnits="userSpaceOnUse">
+      <g class="cls-5">
+        <text class="cls-1" transform="translate(732.28 791.32)">JB<tspan x="-352.97" y="550.8">LABS</tspan></text>
+      </g>
+    </mask>
+  </defs>
+  <title>logo</title>
+  <g class="cls-2">
+    <g>
+      <path class="cls-3" d="M1023.5,1853c-121.84,0-240-23.86-351.29-70.92a905.78,905.78,0,0,1-480.29-480.29C144.86,1190.53,121,1072.34,121,950.5s23.86-240,70.92-351.29A905.78,905.78,0,0,1,672.21,118.92C783.47,71.86,901.66,48,1023.5,48s240,23.86,351.29,70.92a905.78,905.78,0,0,1,480.29,480.29C1902.14,710.47,1926,828.66,1926,950.5s-23.86,240-70.92,351.29a905.78,905.78,0,0,1-480.29,480.29C1263.53,1829.14,1145.34,1853,1023.5,1853Z"/>
+      <path class="cls-4" d="M1023.5,58a899.33,899.33,0,0,1,179.89,18.13,887.57,887.57,0,0,1,319.1,134.28A895.15,895.15,0,0,1,1845.87,603.1a888.24,888.24,0,0,1,52,167.51,901.52,901.52,0,0,1,0,359.78,887.57,887.57,0,0,1-134.28,319.1,895.15,895.15,0,0,1-392.69,323.38,888.24,888.24,0,0,1-167.51,52,901.52,901.52,0,0,1-359.78,0,887.57,887.57,0,0,1-319.1-134.28A895.15,895.15,0,0,1,201.13,1297.9a888.24,888.24,0,0,1-52-167.51,901.52,901.52,0,0,1,0-359.78,887.57,887.57,0,0,1,134.28-319.1A895.15,895.15,0,0,1,676.1,128.13a888.24,888.24,0,0,1,167.51-52A899.33,899.33,0,0,1,1023.5,58m0-20C519.54,38,111,446.54,111,950.5S519.54,1863,1023.5,1863,1936,1454.46,1936,950.5,1527.46,38,1023.5,38Z"/>
+    </g>
+  </g>
+</svg>

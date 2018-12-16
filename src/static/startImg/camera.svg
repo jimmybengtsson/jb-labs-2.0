@@ -1,0 +1,73 @@
+<svg id="Lager_1" data-name="Lager 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1239.91 735.31">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ebebeb;
+        stroke: #999;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 11px;
+      }
+
+      .cls-2 {
+        fill: #6c6c6c;
+        stroke: gray;
+      }
+
+      .cls-3 {
+        fill: #d8d8d8;
+        stroke: #b3b3b3;
+      }
+
+      .cls-4 {
+        fill: #dd3341;
+      }
+
+      .cls-5 {
+        fill: #bfbfbf;
+      }
+
+      .cls-6 {
+        fill: #2d2828;
+      }
+
+      .cls-7 {
+        fill: #404040;
+      }
+
+      .cls-8 {
+        fill: #ccc;
+      }
+
+      .cls-9 {
+        fill: #999;
+      }
+
+      .cls-10 {
+        fill: #e0e0e0;
+      }
+    </style>
+  </defs>
+  <title>camera</title>
+  <rect class="cls-1" x="5.5" y="131.63" width="1228.91" height="19.5" rx="9.75" ry="9.75"/>
+  <path class="cls-2" d="M357,251V741.79A39.32,39.32,0,0,0,396.21,781H1480.79A39.32,39.32,0,0,0,1520,741.79V252Z" transform="translate(-316.12 -51.19)"/>
+  <path class="cls-3" d="M1520,95.9a39.32,39.32,0,0,0-39.21-39.21H396.21A39.32,39.32,0,0,0,357,95.9V251L1520,252Z" transform="translate(-316.12 -51.19)"/>
+  <rect x="893.88" y="29.81" width="212" height="142" rx="12" ry="12"/>
+  <rect x="305.88" y="100.81" width="90" height="49" rx="12" ry="12"/>
+  <circle cx="448.38" cy="49.31" r="19.5"/>
+  <circle class="cls-4" cx="645.38" cy="82.31" r="39.5"/>
+  <circle class="cls-5" cx="711.38" cy="437.81" r="263"/>
+  <circle class="cls-6" cx="711.38" cy="440.81" r="220"/>
+  <circle class="cls-7" cx="711.38" cy="445.35" r="185.99"/>
+  <circle cx="711.38" cy="445.35" r="134.39"/>
+  <circle class="cls-8" cx="243.13" cy="273.06" r="31.25"/>
+  <circle class="cls-8" cx="428.88" cy="421.58" r="23.77"/>
+  <circle class="cls-9" cx="1055.31" cy="76.01" r="33.21"/>
+  <ellipse class="cls-9" cx="371.27" cy="123.51" rx="16" ry="14.29"/>
+  <circle class="cls-10" cx="1067.56" cy="70.06" r="12.25"/>
+  <circle class="cls-9" cx="774.59" cy="403.58" r="41.77"/>
+  <circle class="cls-10" cx="787.41" cy="396.63" r="12.82"/>
+  <circle class="cls-10" cx="375.27" cy="117.81" r="4"/>
+</svg>
