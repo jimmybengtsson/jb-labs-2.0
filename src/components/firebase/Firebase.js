@@ -170,6 +170,13 @@ class Firebase {
     });
   }
 
+  updateLinkToDB = (data, url, id) => {
+
+    return this.db.collection(url).doc(id).set(data).then((response) => {
+      return data;
+    });
+  }
+
   getLinks = (path) => {
 
     return this.db.collection(path)

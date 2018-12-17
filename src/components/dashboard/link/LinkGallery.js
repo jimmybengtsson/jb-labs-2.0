@@ -6,6 +6,7 @@ import {withFirebase} from '../../firebase'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import '../../../App.css';
 import Typography from '@material-ui/core/es/Typography/Typography'
@@ -32,6 +33,11 @@ const styles = theme => ({
   progress: {
     margin: theme.spacing.unit * 5,
   },
+  toolTip: {
+    fontSize: '70%',
+    backgroundColor: 'white',
+    color: theme.palette.secondary.dark
+  }
 });
 
 class LinkGallery extends Component {
@@ -58,6 +64,18 @@ class LinkGallery extends Component {
       this.setState({links: response})
     })
   }
+
+  renderTooltip = (data) => {
+    return (
+      <div>
+        <Typography>Title: {data.title}</Typography>
+        <Typography>Description: {data.description}</Typography>
+        <Typography>Url: {data.url}</Typography>
+        <Typography>Extra: {data.extra}</Typography>
+      </div>
+    )
+  }
+
   componentWillMount() {
     this.getLinks(this.props.state)
   }
@@ -108,14 +126,18 @@ class LinkGallery extends Component {
                       {this.state.links.map(data => {
 
                         return (
-                          <Chip
-                            color='primary'
-                            variant="outlined"
-                            key={data.id}
-                            label={data.title}
-                            onDelete={this.handleDelete(data)}
-                            className={classes.chip}
-                          />
+                          <Tooltip key={data.url} title={this.renderTooltip(data)} aria-label="tool-tip" classes={{tooltip: this.props.classes.toolTip}}>
+                            <Chip
+                              color='primary'
+                              variant="outlined"
+                              key={data.id}
+                              label={data.title}
+                              onDelete={this.handleDelete(data)}
+                              className={classes.chip}
+                              clickable
+                              onClick={() => this.props.updateLinkState(data)}
+                            />
+                          </Tooltip>
                         );
                       })}
                     </div>

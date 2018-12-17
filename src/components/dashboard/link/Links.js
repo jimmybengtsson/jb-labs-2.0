@@ -11,6 +11,7 @@ import {withFirebase} from '../../firebase'
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+import Divider from '@material-ui/core/Divider';
 
 import {LinkEnum, codeKnowledge} from '../../misc/Enums'
 import LinkGallery from './LinkGallery'
@@ -57,10 +58,15 @@ const styles = theme => ({
   },
   form: {
     margin: theme.spacing.unit,
-    color: theme.palette.drawerColor
+    color: theme.palette.drawerColor,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '48%',
+    },
   },
   button: {
     marginTop: theme.spacing.unit * 2,
+    margin: theme.spacing.unit,
   },
   progressDiv: {
     width: '100%',
@@ -76,7 +82,7 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: '60%',
+      width: '48%',
     },
   },
 });
@@ -95,7 +101,8 @@ class Links extends Component {
       url: '',
       extra: '',
       loaded: true,
-      knowledge: false
+      knowledge: false,
+      update: false
     }
   }
 
@@ -126,6 +133,15 @@ class Links extends Component {
     });
   };
 
+  cancelInput = () => {
+    this.setState({
+      extra: '',
+      title: '',
+      description: '',
+      url: '',
+    });
+  }
+
   handleUpload = () => {
 
     this.setState({
@@ -151,6 +167,44 @@ class Links extends Component {
       })
     })
   };
+
+  handleUpdate = () => {
+
+    this.setState({
+      loaded: false
+    })
+
+    let tempObj = {
+      url: this.state.url,
+      title: this.state.title,
+      date: this.state.date,
+      extra: this.state.extra,
+      description: this.state.description,
+    }
+
+    this.props.firebase.updateLinkToDB(tempObj, this.state.dbUrl, this.state.id).then((imageResponse) => {
+      this.setState({
+        url: '',
+        title: '',
+        extra: '',
+        description : '',
+        loaded: true,
+        update: false
+      })
+    })
+  };
+
+  updateLinkState = (data) => {
+    this.setState({
+      url: data.url,
+      title: data.title,
+      extra: data.extra,
+      description : data.description,
+      date: data.date,
+      id: data.id,
+      update: true
+    })
+  }
 
   componentDidMount() {
     if (this.state.dbUrl === 'links/code/tag' && this.state.knowledge === false) {
@@ -273,16 +327,40 @@ class Links extends Component {
                 />
               )}
             </div>
-            <Button type="submit"
-                    variant='contained'
-                    color="primary"
-                    autoFocus
-                    className={classes.button}
-                    onClick={this.handleUpload}
-            >
-              Add Link
-            </Button>
-            <LinkGallery state={this.state}/>
+            <div>
+              <Button type="submit"
+                      variant='contained'
+                      color="primary"
+                      autoFocus
+                      className={classes.button}
+                      onClick={this.cancelInput}
+              >
+                Cancel
+              </Button>
+              {this.state.update ? (
+                <Button type="submit"
+                        variant='contained'
+                        color="primary"
+                        autoFocus
+                        className={classes.button}
+                        onClick={this.handleUpdate}
+                >
+                  Update Link
+                </Button>
+                ) : (
+                <Button type="submit"
+                        variant='contained'
+                        color="primary"
+                        autoFocus
+                        className={classes.button}
+                        onClick={this.handleUpload}
+                >
+                  Add Link
+                </Button>
+              )}
+            </div>
+            <Divider />
+            <LinkGallery state={this.state} updateLinkState={this.updateLinkState}/>
           </div>
         ) : (
           <div className={classes.progressDiv}>

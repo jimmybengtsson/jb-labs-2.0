@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles'
-import FileUploader from "react-firebase-file-uploader";
 import Typography from '@material-ui/core/Typography';
 import ArrowIcon from '@material-ui/icons/KeyboardArrowDown';
 import Menu from '@material-ui/core/Menu'

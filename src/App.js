@@ -4,7 +4,6 @@ import {withFirebase } from './components/firebase'
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { spring, AnimatedSwitch } from 'react-router-transition';
 
 import AppBar from './components/appbar/AppBar'
 import Start from './components/Start'
