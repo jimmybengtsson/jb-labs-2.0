@@ -77,6 +77,8 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
+    marginBottom: theme.spacing.unit,
+    marginTop: theme.spacing.unit*2,
   },
   titleDiv: {
     width: '100%',
@@ -119,7 +121,9 @@ const styles = theme => ({
     alignItems: 'flex-start',
     flexDirection: 'column',
     padding: theme.spacing.unit,
-    backgroundColor: theme.palette.paperColor
+    backgroundColor: 'white',
+    marginBottom: theme.spacing.unit,
+    marginTop: theme.spacing.unit,
   },
   title: {
     fontSize: 14,
@@ -198,7 +202,7 @@ class GithubRepos extends Component {
                   </Typography>
                   <Button className={classes.button}
                           size="small"
-                          variant='contained'
+                          variant='outlined'
                           color='primary'
                   onClick={() => this.handleDialogOpen(item)}>See README</Button>
                 </Paper>

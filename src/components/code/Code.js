@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import '../../App.css';
 import GithubRepos from './GihubRepos'
 import Knowledge from './Knowledge'
+import Education from './Education'
 
 
 const styles = theme => ({
@@ -29,10 +30,11 @@ class Code extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
+        <Education state={this.props.state}/>
+        <Divider />
         <GithubRepos state={this.props.state}/>
         <Divider />
         <Knowledge state={this.props.state}/>
-        <Divider />
       </div>
     );
   }

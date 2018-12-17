@@ -17,7 +17,8 @@ const styles = theme => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
     padding: theme.spacing.unit / 2,
-    marginTop: theme.spacing.unit * 4
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2
   },
   progress: {
     margin: theme.spacing.unit * 5,
