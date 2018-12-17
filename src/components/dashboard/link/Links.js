@@ -8,8 +8,11 @@ import ArrowIcon from '@material-ui/icons/KeyboardArrowDown';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {withFirebase} from '../../firebase'
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 
-import {LinkEnum} from '../../misc/Enums'
+import {LinkEnum, codeKnowledge} from '../../misc/Enums'
 import LinkGallery from './LinkGallery'
 
 import '../../../App.css';
@@ -69,6 +72,13 @@ const styles = theme => ({
   progress: {
     margin: theme.spacing.unit * 5,
   },
+  formControl: {
+    margin: theme.spacing.unit,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '60%',
+    },
+  },
 });
 
 class Links extends Component {
@@ -85,6 +95,7 @@ class Links extends Component {
       url: '',
       extra: '',
       loaded: true,
+      knowledge: false
     }
   }
 
@@ -107,6 +118,12 @@ class Links extends Component {
     }, () => {
       console.log(this.state)
     })
+  };
+
+  handleSelectChange = event => {
+    this.setState({
+      extra: event.target.value
+    });
   };
 
   handleUpload = () => {
@@ -133,9 +150,25 @@ class Links extends Component {
         loaded: true
       })
     })
-
-
   };
+
+  componentDidMount() {
+    if (this.state.dbUrl === 'links/code/tag' && this.state.knowledge === false) {
+      this.setState({knowledge: true})
+    }
+    if (this.state.dbUrl !== 'links/code/tag' && this.state.knowledge === true) {
+      this.setState({knowledge: false})
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    if (nextState.dbUrl === 'links/code/tag' && this.state.knowledge === false) {
+      this.setState({knowledge: true})
+    }
+    if (nextState.dbUrl !== 'links/code/tag' && this.state.knowledge === true) {
+      this.setState({knowledge: false})
+    }
+  }
 
   render() {
 
@@ -202,19 +235,43 @@ class Links extends Component {
                 onChange={this.handleChange('url')}
                 value={this.state.url}
               />
-              <TextField
-                multiline
-                fullWidth
-                id='extra'
-                label='Extra'
-                required
-                onChange={this.handleChange('extra')}
-                className={classes.form}
-                value={this.state.extra}
-                variant="outlined"
-                rows={1}
-                rowsMax={4}
-              />
+              {this.state.knowledge ? (
+                <FormControl className={classes.formControl}>
+                  <InputLabel htmlFor="age-simple">Category</InputLabel>
+                  <Select
+                    variant="outlined"
+                    value={this.state.extra}
+                    onChange={this.handleSelectChange}
+                    inputProps={{
+                      name: 'category',
+                      id: 'category-form',
+                    }}
+                  >
+                    <MenuItem value="" disabled>
+                      <em>Select category</em>
+                    </MenuItem>
+                    {codeKnowledge.map((item, index) => {
+                      return (
+                        <MenuItem key={index} value={item.name} >{item.display}</MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+                ) : (
+                <TextField
+                  multiline
+                  fullWidth
+                  id='extra'
+                  label='Extra'
+                  required
+                  onChange={this.handleChange('extra')}
+                  className={classes.form}
+                  value={this.state.extra}
+                  variant="outlined"
+                  rows={1}
+                  rowsMax={4}
+                />
+              )}
             </div>
             <Button type="submit"
                     variant='contained'

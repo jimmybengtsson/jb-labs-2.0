@@ -7,9 +7,9 @@ import blueGrey from '@material-ui/core/colors/blueGrey'
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      light: blueGrey[300],
-      main: blueGrey[500],
-      dark: blueGrey[700],
+      light: blueGrey[400],
+      main: blueGrey[600],
+      dark: blueGrey[800],
       button: blueGrey[600],
       contrastText: grey[100],
     },
@@ -25,7 +25,7 @@ export const theme = createMuiTheme({
     backgroundColor: grey[100],
     appBarColor: blueGrey[800],
     drawerColor: blueGrey[600],
-    paperColor: blueGrey[600],
+    paperColor: blueGrey[100],
     dialogColor: blueGrey[100],
   },
 

@@ -213,6 +213,29 @@ class Firebase {
       });
     })
   }
+
+  getLinksPublic = (path, sort, direction) => {
+
+    return this.db.collection(path)
+      .orderBy(sort, direction)
+      .get()
+      .then(querySnapshot => {
+        const Matches = [];
+
+        querySnapshot.forEach(function (doc) {
+          Matches.push({
+            date: doc.data().date,
+            url: doc.data().url,
+            title: doc.data().title,
+            description: doc.data().description,
+            extra: doc.data().extra,
+            id: doc.id,
+          });
+        });
+
+        return Matches
+      })
+  }
 }
 
 export default Firebase;

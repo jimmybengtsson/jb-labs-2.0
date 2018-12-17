@@ -134,3 +134,22 @@ export const imageMenu = [
     url: 'db/images/misc',
   },
 ]
+
+export const codeKnowledge = [
+  {
+    display: 'Languages & Environments',
+    name: 'languages',
+  },
+  {
+    display: 'Frameworks & Libraries',
+    name: 'framework',
+  },
+  {
+    display: 'Tools & Services',
+    name: 'tools',
+  },
+  {
+    display: 'Blockchain',
+    name: 'blockchain',
+  },
+]

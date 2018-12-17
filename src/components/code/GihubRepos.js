@@ -185,7 +185,7 @@ class GithubRepos extends Component {
               return (
                 <Paper className={classes.card} key={item.id}>
                   <div className={classes.cardTitle}>
-                    <Typography noWrap className={classes.title} color="textSecondary" gutterBottom>
+                    <Typography noWrap className={classes.title} color='primary' gutterBottom>
                       {item.name}
                     </Typography>
                     <Typography className={classes.pos} >
@@ -198,6 +198,8 @@ class GithubRepos extends Component {
                   </Typography>
                   <Button className={classes.button}
                           size="small"
+                          variant='contained'
+                          color='primary'
                   onClick={() => this.handleDialogOpen(item)}>See README</Button>
                 </Paper>
               )
