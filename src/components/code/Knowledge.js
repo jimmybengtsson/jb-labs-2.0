@@ -89,9 +89,9 @@ class Knowledge extends Component {
     )
   }
 
-  openInNewTab = (url) => {
+  /*openInNewTab = (url) => {
     window.open(url, '_blank');
-  }
+  }*/
 
   renderTooltip = (data) => {
     return (
@@ -99,47 +99,94 @@ class Knowledge extends Component {
     )
   }
 
+  renderChips = (response) => {
+    let chipObj = {
+      languages: [
+        this.renderTitleChip('Languages & Environments')
+      ],
+      framework: [
+        this.renderTitleChip('Frameworks & Libraries')
+      ],
+      tools: [
+        this.renderTitleChip('Tools & Services')
+      ],
+      blockchain: [
+        this.renderTitleChip('Blockchain')
+      ],
+    }
+
+    for (let i = 0; i < response.length; i++) {
+      chipObj[response[i].description].push(
+        <Tooltip interactive key={response[i].title} title={this.renderTooltip(response[i])} aria-label="tool-tip" classes={{tooltip: this.props.classes.toolTip}}>
+          <Chip
+            color='primary'
+            variant="outlined"
+            key={response[i].id}
+            label={response[i].title}
+            className={this.props.classes.chip}
+            clickable
+          />
+        </Tooltip>
+      )
+    }
+    let tempArr = []
+
+    tempArr.push(...chipObj.languages)
+    tempArr.push(...chipObj.framework)
+    tempArr.push(...chipObj.tools)
+    tempArr.push(...chipObj.blockchain)
+    return tempArr;
+  }
+
   getKnowledgeLink = () => {
-    this.props.firebase.getLinksPublic('links/code/tag', 'title', 'asc').then((response) => {
-      console.log(response)
-      let chipObj = {
-        languages: [
-          this.renderTitleChip('Languages & Environments')
-        ],
-        framework: [
-          this.renderTitleChip('Frameworks & Libraries')
-        ],
-        tools: [
-          this.renderTitleChip('Tools & Services')
-        ],
-        blockchain: [
-          this.renderTitleChip('Blockchain')
-        ],
+    if (localStorage.getItem('knowledgeLinks')) {
+
+      let links = JSON.parse(localStorage.getItem('knowledgeLinks'));
+      let dateNow = new Date()
+      let hourAgo = dateNow.setHours(dateNow.getHours() - 1);
+
+      if (links.date < hourAgo) {
+        this.props.firebase.getLinksPublic('links/code/tag', 'title', 'asc').then((response) => {
+
+          let tempObj = {
+            date: Date.now(),
+            links: response,
+          }
+          localStorage.setItem('knowledgeLinks', JSON.stringify(tempObj))
+
+          let tempArr = this.renderChips(response)
+
+          this.setState({links: tempArr})
+        }).catch((err) => {
+          this.setState({
+            links: null,
+          })
+        })
+      } else {
+
+        let tempArr = this.renderChips(links.links)
+        this.setState({
+          links: tempArr,
+        })
       }
+    } else {
+      this.props.firebase.getLinksPublic('links/code/tag', 'title', 'asc').then((response) => {
 
-      for (let i = 0; i < response.length; i++) {
-        chipObj[response[i].extra].push(
-          <Tooltip interactive key={response[i].title} title={this.renderTooltip(response[i])} aria-label="tool-tip" classes={{tooltip: this.props.classes.toolTip}}>
-            <Chip
-              color='primary'
-              variant="outlined"
-              key={response[i].id}
-              label={response[i].title}
-              className={this.props.classes.chip}
-              clickable
-            />
-          </Tooltip>
-        )
-      }
-      let tempArr = []
+        let tempObj = {
+          date: Date.now(),
+          links: response,
+        }
+        localStorage.setItem('knowledgeLinks', JSON.stringify(tempObj))
 
-      tempArr.push(...chipObj.languages)
-      tempArr.push(...chipObj.framework)
-      tempArr.push(...chipObj.tools)
-      tempArr.push(...chipObj.blockchain)
+        let tempArr = this.renderChips(response)
 
-      this.setState({links: tempArr})
-    })
+        this.setState({links: tempArr})
+      }).catch((err) => {
+        this.setState({
+          links: null,
+        })
+      })
+    }
   }
 
   componentDidMount() {

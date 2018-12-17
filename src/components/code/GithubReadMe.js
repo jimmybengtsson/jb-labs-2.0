@@ -27,7 +27,6 @@ const styles = theme => ({
     alignItems: 'center'
   },
   dialog: {
-    backgroundColor: theme.palette.dialogColor
   },
   markdown: {
     padding: theme.spacing.unit,
@@ -99,7 +98,7 @@ class GithubReadMe extends Component {
             ) : (
               <div className={classes.dialog}>
                 <DialogTitle color='inherit' id="alert-dialog-slide-title">
-                  {'Read Me for ' + this.props.state.clickedRepo.name}
+                  {'README.md from ' + this.props.state.clickedRepo.name}
                 </DialogTitle>
                 <DialogContent>
                   <Markdown sidebar='false' className={classes.markdown}>

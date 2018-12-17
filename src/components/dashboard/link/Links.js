@@ -129,7 +129,7 @@ class Links extends Component {
 
   handleSelectChange = event => {
     this.setState({
-      extra: event.target.value
+      description: event.target.value
     });
   };
 
@@ -264,37 +264,12 @@ class Links extends Component {
                 onChange={this.handleChange('title')}
                 value={this.state.title}
               />
-              <TextField
-                multiline
-                fullWidth
-                id='description'
-                label='Description'
-                required
-                onChange={this.handleChange('description')}
-                className={classes.form}
-                value={this.state.description}
-                variant="outlined"
-                rows={1}
-                rowsMax={4}
-              />
-            </div>
-            <div className={classes.inputTop}>
-              <TextField
-                className={classes.form}
-                fullWidth
-                id='url'
-                label='URL'
-                required
-                variant="outlined"
-                onChange={this.handleChange('url')}
-                value={this.state.url}
-              />
               {this.state.knowledge ? (
                 <FormControl className={classes.formControl}>
                   <InputLabel htmlFor="age-simple">Category</InputLabel>
                   <Select
                     variant="outlined"
-                    value={this.state.extra}
+                    value={this.state.description}
                     onChange={this.handleSelectChange}
                     inputProps={{
                       name: 'category',
@@ -311,21 +286,46 @@ class Links extends Component {
                     })}
                   </Select>
                 </FormControl>
-                ) : (
+              ) : (
                 <TextField
                   multiline
                   fullWidth
-                  id='extra'
-                  label='Extra'
+                  id='description'
+                  label='Description'
                   required
-                  onChange={this.handleChange('extra')}
+                  onChange={this.handleChange('description')}
                   className={classes.form}
-                  value={this.state.extra}
+                  value={this.state.description}
                   variant="outlined"
                   rows={1}
                   rowsMax={4}
                 />
               )}
+            </div>
+            <div className={classes.inputTop}>
+              <TextField
+                className={classes.form}
+                fullWidth
+                id='url'
+                label='URL'
+                required
+                variant="outlined"
+                onChange={this.handleChange('url')}
+                value={this.state.url}
+              />
+              <TextField
+                multiline
+                fullWidth
+                id='extra'
+                label='Extra'
+                required
+                onChange={this.handleChange('extra')}
+                className={classes.form}
+                value={this.state.extra}
+                variant="outlined"
+                rows={1}
+                rowsMax={4}
+              />
             </div>
             <div>
               <Button type="submit"

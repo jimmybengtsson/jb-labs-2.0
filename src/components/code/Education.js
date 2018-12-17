@@ -23,6 +23,7 @@ import RenderTooltip from './RenderTooltip'
 import EducationLogo from '../../static/code/education.svg'
 import TouchIcon from '@material-ui/icons/TouchApp';
 import LaunchIcon from '@material-ui/core/SvgIcon/SvgIcon'
+import {getLatestRepos} from '../misc/ApiRequests'
 
 const slickSettings = {
   dots: true,
@@ -192,12 +193,49 @@ class Education extends Component {
   }
 
   getEducationLink = () => {
-    this.props.firebase.getLinksPublic('links/code/education', 'date', 'asc').then((response) => {
-      console.log(response)
 
-      this.setState({links: response})
-    })
+    if (localStorage.getItem('educationLinks')) {
+
+      let links = JSON.parse(localStorage.getItem('educationLinks'));
+      let dateNow = new Date()
+      let hourAgo = dateNow.setHours(dateNow.getHours() - 1);
+
+      if (links.date < hourAgo) {
+        this.props.firebase.getLinksPublic('links/code/education', 'date', 'asc').then((response) => {
+          let tempObj = {
+            date: Date.now(),
+            links: response,
+          }
+          localStorage.setItem('educationLinks', JSON.stringify(tempObj))
+
+          this.setState({links: response})
+        }).catch((err) => {
+          this.setState({
+            links: null,
+          })
+        })
+      } else {
+        this.setState({
+          links: links.links,
+        })
+      }
+    } else {
+      this.props.firebase.getLinksPublic('links/code/education', 'date', 'asc').then((response) => {
+        let tempObj = {
+          date: Date.now(),
+          links: response,
+        }
+        localStorage.setItem('educationLinks', JSON.stringify(tempObj))
+
+        this.setState({links: response})
+      }).catch((err) => {
+        this.setState({
+          links: null,
+        })
+      })
+    }
   }
+
   renderPapers = (classes) => {
 
     if (this.state.links === null) {

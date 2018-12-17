@@ -18,8 +18,6 @@ const styles = theme => ({
   main: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
       width: 400,
       marginLeft: 'auto',
@@ -27,7 +25,7 @@ const styles = theme => ({
     },
   },
   paper: {
-    marginTop: theme.spacing.unit * 8,
+
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -121,7 +119,7 @@ class Login extends Component {
                 <LockIcon />
               </Avatar>
               <Typography component="h1" variant="h5">
-                Logga in
+                Login
               </Typography>
               <TextField
                 className={classes.form}
@@ -135,7 +133,7 @@ class Login extends Component {
               />
               <TextField
                 id='password'
-                label='Lösenord'
+                label='Password'
                 required
                 type='password'
                 autoComplete='current-password'
@@ -151,7 +149,7 @@ class Login extends Component {
                 className={classes.submit}
                 onClick={this.handleSubmit}
               >
-                Logga in
+                Login
               </Button>
             </Paper>
           </main>
