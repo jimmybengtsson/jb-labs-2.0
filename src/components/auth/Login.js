@@ -86,12 +86,12 @@ class Login extends Component {
         //localStorage.setItem('token', JSON.stringify(response.data.token))
         //this.props.userLogin(response.data.token)
         //this.props.handleLoginClose()
-        this.props.enqueueSnackbar('Welcome ' + this.state.email, 'success');
+        this.props.enqueueSnackbar('Welcome ' + this.state.email, {variant: 'success'});
         console.log(response)
         return this.props.handleLoginClose()
       }).catch((err) => {
 
-      this.props.enqueueSnackbar(err.message, 'error');
+      this.props.enqueueSnackbar(err.message, {variant: 'error'});
       return this.props.handleLoginClose()
     })
   }

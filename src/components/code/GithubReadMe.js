@@ -28,6 +28,12 @@ const styles = theme => ({
   },
   dialog: {
     backgroundColor: theme.palette.dialogColor
+  },
+  markdown: {
+    padding: theme.spacing.unit,
+    '& img': {
+      maxWidth: '90%'
+    }
   }
 });
 
@@ -96,7 +102,7 @@ class GithubReadMe extends Component {
                   {'Read Me for ' + this.props.state.clickedRepo.name}
                 </DialogTitle>
                 <DialogContent>
-                  <Markdown sidebar='false'>
+                  <Markdown sidebar='false' className={classes.markdown}>
                     {this.state.markdown}
                   </Markdown>
                 </DialogContent>

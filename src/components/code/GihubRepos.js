@@ -21,6 +21,7 @@ import {getLatestRepos} from '../misc/ApiRequests'
 import '../../App.css';
 
 import GithubLogo from '../../static/social/github.svg'
+import LaunchIcon from '@material-ui/icons/Launch';
 
 const slickSettings = {
   dots: true,
@@ -166,7 +167,10 @@ const styles = theme => ({
     overflow: 'hidden'
   },
   dialog: {
-    WebkitOverflowScrolling: 'touch'
+
+  },
+  click: {
+    alignSelf: 'flex-end'
   }
 });
 
@@ -211,7 +215,7 @@ class GithubRepos extends Component {
           <Slider {...slickSettings} className={classes.slider}>
             {this.state.repos.map((item, index) => {
               return (
-                <Paper className={classes.card} key={item.id}>
+                <Paper onClick={() => this.handleDialogOpen(item)} className={classes.card} key={item.id}>
                   <div className={classes.cardTitle}>
                     <Typography noWrap className={classes.title} color='primary' gutterBottom>
                       {item.name}
@@ -224,11 +228,7 @@ class GithubRepos extends Component {
                   <Typography className={classes.description} component="p">
                     {item.description}
                   </Typography>
-                  <Button className={classes.button}
-                          size="small"
-                          variant='outlined'
-                          color='primary'
-                  onClick={() => this.handleDialogOpen(item)}>See README</Button>
+                  <LaunchIcon className={classes.click} color='primary'/>
                 </Paper>
               )
             })}
@@ -312,6 +312,7 @@ class GithubRepos extends Component {
               {this.renderPapers(classes)}
             </div>
             <Dialog
+              scroll='paper'
               className={classes.dialog}
               open={this.state.dialog}
               TransitionComponent={Transition}

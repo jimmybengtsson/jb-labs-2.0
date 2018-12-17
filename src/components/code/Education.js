@@ -18,7 +18,11 @@ import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
 import Markdown from '../misc/Markdown'
 
+import RenderTooltip from './RenderTooltip'
+
 import EducationLogo from '../../static/code/education.svg'
+import TouchIcon from '@material-ui/icons/TouchApp';
+import LaunchIcon from '@material-ui/core/SvgIcon/SvgIcon'
 
 const slickSettings = {
   dots: true,
@@ -27,8 +31,8 @@ const slickSettings = {
   slidesToScroll: 2,
   initialSlide: 0,
   autoplay: true,
-  speed: 4000,
-  autoplaySpeed: 3000,
+  speed: 800,
+  autoplaySpeed: 5000,
   cssEase: "linear",
   responsive: [
     {
@@ -118,7 +122,6 @@ const styles = theme => ({
     width: '100%'
   },
   title: {
-    fontSize: 14,
   },
   pos: {
     marginBottom: 12,
@@ -127,8 +130,9 @@ const styles = theme => ({
     bottom: 0
   },
   description: {
-    maxHeight: '40%',
-    overflow: 'hidden'
+    maxHeight: '50%',
+    overflow: 'hidden',
+    marginBottom: theme.spacing.unit*2
   },
   titleDiv: {
     width: '100%',
@@ -166,6 +170,9 @@ const styles = theme => ({
   subHeader: {
 
   },
+  click: {
+    alignSelf: 'flex-end'
+  }
 });
 
 class Education extends Component {
@@ -180,9 +187,7 @@ class Education extends Component {
 
   renderTooltip = (data) => {
     return (
-      <Markdown sidebar='false'>
-        {data.extra}
-      </Markdown>
+      <RenderTooltip itemData={data}/>
     )
   }
 
@@ -210,21 +215,15 @@ class Education extends Component {
                 <Tooltip interactive key={item.id} title={this.renderTooltip(item)} aria-label="tool-tip" placement="top" classes={{tooltip: this.props.classes.toolTip}}>
                   <Paper className={classes.card} key={item.title}>
                     <div className={classes.cardTitle}>
-                      <Typography className={classes.title} color='primary' gutterBottom>
+                      <Typography className={classes.title} color='primary' variant='title' gutterBottom>
                         {item.title}
                       </Typography>
                       <Divider/>
                     </div>
-                    <Typography className={classes.description} component="p">
+                    <Typography className={classes.description} variant='subheading'>
                       {item.description}
                     </Typography>
-                    <Button className={classes.button}
-                            size="small"
-                            variant='outlined'
-                            color='primary'
-                            target="_blank"
-                            href={item.url}
-                    >Go to page</Button>
+                    <TouchIcon className={classes.click} color='primary'/>
                   </Paper>
                 </Tooltip>
               )

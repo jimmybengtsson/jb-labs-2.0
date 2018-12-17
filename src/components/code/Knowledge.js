@@ -9,6 +9,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import '../../App.css';
 import Chip from '@material-ui/core/Chip'
 import Button from '@material-ui/core/Button'
+import RenderTooltip from './RenderTooltip'
 
 import KnowledgeLogo from '../../static/code/skills.svg'
 import Typography from '@material-ui/core/es/Typography'
@@ -92,6 +93,12 @@ class Knowledge extends Component {
     window.open(url, '_blank');
   }
 
+  renderTooltip = (data) => {
+    return (
+      <RenderTooltip itemData={data}/>
+    )
+  }
+
   getKnowledgeLink = () => {
     this.props.firebase.getLinksPublic('links/code/tag', 'title', 'asc').then((response) => {
       console.log(response)
@@ -112,7 +119,7 @@ class Knowledge extends Component {
 
       for (let i = 0; i < response.length; i++) {
         chipObj[response[i].extra].push(
-          <Tooltip key={response[i].title} title={response[i].description} aria-label="tool-tip" classes={{tooltip: this.props.classes.toolTip}}>
+          <Tooltip interactive key={response[i].title} title={this.renderTooltip(response[i])} aria-label="tool-tip" classes={{tooltip: this.props.classes.toolTip}}>
             <Chip
               color='primary'
               variant="outlined"
@@ -120,7 +127,6 @@ class Knowledge extends Component {
               label={response[i].title}
               className={this.props.classes.chip}
               clickable
-              onClick={() => this.openInNewTab(response[i].url)}
             />
           </Tooltip>
         )

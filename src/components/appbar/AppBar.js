@@ -171,7 +171,7 @@ class Appbar extends Component {
     handleLogoutButton = () => {
 
       this.props.firebase.doSignOut().then(() => {
-        this.props.enqueueSnackbar('See you soon!', 'success');
+        this.props.enqueueSnackbar('See you soon!', {variant: 'success'});
       }).catch((err) => {
         this.props.enqueueSnackbar(err.message, 'error');
       })
