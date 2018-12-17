@@ -18,6 +18,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Drawer from '@material-ui/core/Drawer'
 import Dialog from '@material-ui/core/Dialog';
+import { withSnackbar } from 'notistack';
 
 import HomeIcon from '@material-ui/icons/Home';
 import CodeIcon from '@material-ui/icons/Code';
@@ -170,7 +171,9 @@ class Appbar extends Component {
     handleLogoutButton = () => {
 
       this.props.firebase.doSignOut().then(() => {
-        console.log('Logout')
+        this.props.enqueueSnackbar('See you soon!', 'success');
+      }).catch((err) => {
+        this.props.enqueueSnackbar(err.message, 'error');
       })
 
   }
@@ -323,4 +326,4 @@ Appbar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withFirebase(withRouter(withStyles(styles)(Appbar)));
+export default withSnackbar(withFirebase(withRouter(withStyles(styles)(Appbar))));

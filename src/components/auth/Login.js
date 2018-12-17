@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { withSnackbar } from 'notistack';
 
 import { withFirebase } from '../firebase/';
 
@@ -85,10 +86,13 @@ class Login extends Component {
         //localStorage.setItem('token', JSON.stringify(response.data.token))
         //this.props.userLogin(response.data.token)
         //this.props.handleLoginClose()
+        this.props.enqueueSnackbar('Welcome ' + this.state.email, 'success');
+        console.log(response)
         return this.props.handleLoginClose()
       }).catch((err) => {
 
-      return console.log(err.message)
+      this.props.enqueueSnackbar(err.message, 'error');
+      return this.props.handleLoginClose()
     })
   }
 
@@ -161,4 +165,4 @@ Login.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withFirebase(withRouter(withStyles(styles)(Login)));
+export default withSnackbar(withFirebase(withRouter(withStyles(styles)(Login))));
