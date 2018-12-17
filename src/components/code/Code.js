@@ -12,6 +12,9 @@ import Education from './Education'
 
 const styles = theme => ({
   root: {
+    [theme.breakpoints.up('md')]: {
+      paddingRight: theme.spacing.unit*5
+    },
   },
 });
 

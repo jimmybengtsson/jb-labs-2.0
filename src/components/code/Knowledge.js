@@ -10,6 +10,8 @@ import '../../App.css';
 import Chip from '@material-ui/core/Chip'
 import Button from '@material-ui/core/Button'
 
+import KnowledgeLogo from '../../static/code/skills.svg'
+import Typography from '@material-ui/core/es/Typography'
 
 const styles = theme => ({
   root: {
@@ -35,7 +37,33 @@ const styles = theme => ({
     fontSize: '70%',
     backgroundColor: 'white',
     color: theme.palette.secondary.dark
-  }
+  },
+  titleDiv: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+  titleDivInner: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+  titleIcon: {
+    width: '17%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12%',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '10%',
+    },
+  },
+  header: {
+
+  },
 });
 
 class Knowledge extends Component {
@@ -121,6 +149,14 @@ class Knowledge extends Component {
       <div >
         {this.state.links ? (
           <div className={classes.root}>
+            <div className={classes.titleDiv}>
+              <img src={KnowledgeLogo} className={classes.titleIcon}/>
+              <div className={classes.titleDivInner}>
+                <Typography variant='headline' color='primary' className={classes.header}>
+                  Knowledge
+                </Typography>
+              </div>
+            </div>
             {this.state.links}
           </div>
           ) : (

@@ -20,22 +20,16 @@ import GithubReadMe from './GithubReadMe'
 import {getLatestRepos} from '../misc/ApiRequests'
 import '../../App.css';
 
+import GithubLogo from '../../static/social/github.svg'
+
 const slickSettings = {
   dots: true,
   infinite: true,
   speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 3,
+  slidesToShow: 2,
+  slidesToScroll: 2,
   initialSlide: 0,
   responsive: [
-    {
-      breakpoint: 700,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        initialSlide: 0
-      }
-    },
     {
       breakpoint: 600,
       settings: {
@@ -62,6 +56,8 @@ const slickSettings = {
 
 const styles = theme => ({
   root: {
+    marginBottom: theme.spacing.unit,
+    marginTop: theme.spacing.unit*2,
   },
   progress: {
     margin: theme.spacing.unit * 5,
@@ -77,15 +73,40 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    marginBottom: theme.spacing.unit,
-    marginTop: theme.spacing.unit*2,
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
+    },
   },
   titleDiv: {
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      width: '20%',
+      alignItems: 'flex-start',
+      order: 1
+    },
+  },
+  titleDivInner: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      alignItems: 'flex-start',
+    },
+  },
+  titleIcon: {
+    width: '17%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12%',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '70%',
+    },
   },
   gridDiv: {
     width: '100%',
@@ -109,6 +130,9 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 5,
     alignItems: 'center',
     justifyContent: 'center',
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '78%'
+    },
   },
   noRepos: {
     alignSelf: 'center',
@@ -274,12 +298,15 @@ class GithubRepos extends Component {
         {this.state.loaded ? (
           <div className={classes.body}>
             <div className={classes.titleDiv}>
-              <Typography variant='headline' color='primary' className={classes.header}>
-                Public Github Repos
-              </Typography>
-              <Typography variant='subheading' color='secondary' className={classes.subHeader}>
-                Click on each repo to see their README.md
-              </Typography>
+              <img src={GithubLogo} className={classes.titleIcon}/>
+              <div className={classes.titleDivInner}>
+                <Typography variant='headline' color='primary' className={classes.header}>
+                  Public Github Repos
+                </Typography>
+                <Typography variant='subheading' color='secondary' className={classes.subHeader}>
+                  Click on each repo to see their README.md
+                </Typography>
+              </div>
             </div>
             <div className={classes.gridDiv}>
               {this.renderPapers(classes)}

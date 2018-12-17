@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {withFirebase} from '../firebase'
 import Slider from "react-slick";
+import IconButton from '@material-ui/core/IconButton';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 import '../../App.css';
 import Tooltip from '@material-ui/core/Tooltip'
@@ -16,25 +18,19 @@ import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
 import Markdown from '../misc/Markdown'
 
+import EducationLogo from '../../static/code/education.svg'
+
 const slickSettings = {
   dots: true,
   infinite: true,
-  slidesToShow: 3,
-  slidesToScroll: 3,
+  slidesToShow: 2,
+  slidesToScroll: 2,
   initialSlide: 0,
   autoplay: true,
   speed: 4000,
   autoplaySpeed: 3000,
   cssEase: "linear",
   responsive: [
-    {
-      breakpoint: 700,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        initialSlide: 0
-      }
-    },
     {
       breakpoint: 600,
       settings: {
@@ -83,6 +79,9 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
+    },
   },
   gridDiv: {
     width: '100%',
@@ -96,10 +95,13 @@ const styles = theme => ({
     },
   },
   slider: {
-    maxWidth: '100%',
+    width: '100%',
     marginBottom: theme.spacing.unit * 5,
     alignItems: 'center',
     justifyContent: 'center',
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '78%'
+    },
   },
   card: {
     height: 160,
@@ -132,8 +134,31 @@ const styles = theme => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      width: '20%',
+      alignItems: 'flex-start',
+    },
+  },
+  titleDivInner: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      alignItems: 'flex-start',
+    },
+  },
+  titleIcon: {
+    width: '20%',
+    [theme.breakpoints.up('sm')]: {
+      width: '14%',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '80%',
+    },
   },
   header: {
 
@@ -232,12 +257,15 @@ class Education extends Component {
         {this.state.links ? (
           <div className={classes.body}>
             <div className={classes.titleDiv}>
-              <Typography variant='headline' color='primary' className={classes.header}>
-                Education
-              </Typography>
-              <Typography variant='subheading' color='secondary' className={classes.subHeader}>
-                Courses in computer science that I've been taken
-              </Typography>
+              <img src={EducationLogo} className={classes.titleIcon}/>
+              <div className={classes.titleDivInner}>
+                <Typography variant='headline' color='primary' className={classes.header}>
+                  Education
+                </Typography>
+                <Typography variant='subheading' color='secondary' className={classes.subHeader}>
+                  Courses in computer science that I've been taken
+                </Typography>
+              </div>
             </div>
             <div className={classes.gridDiv}>
               {this.renderPapers(classes)}
