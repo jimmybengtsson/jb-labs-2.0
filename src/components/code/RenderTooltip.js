@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Markdown from '../misc/Markdown'
@@ -25,6 +24,9 @@ const styles = theme => ({
     '& img': {
   maxWidth: '90%'
 }
+  },
+  button: {
+    alignSelf: 'flex-end'
   }
 });
 

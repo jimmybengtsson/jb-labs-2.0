@@ -40,24 +40,6 @@ const url = (name, wrap = false) =>
     }https://awv3node-homepage.surge.sh/build/assets/${name}.svg${
     wrap ? ')' : ''
     }`
-const Pink = ({ children }) => (
-  <span style={{ color: '#FF6AC1' }}>{children}</span>
-)
-const Yellow = ({ children }) => (
-  <span style={{ color: '#EFF59B' }}>{children}</span>
-)
-const Lightblue = ({ children }) => (
-  <span style={{ color: '#9AEDFE' }}>{children}</span>
-)
-const Green = ({ children }) => (
-  <span style={{ color: '#57EE89' }}>{children}</span>
-)
-const Blue = ({ children }) => (
-  <span style={{ color: '#57C7FF' }}>{children}</span>
-)
-const Gray = ({ children }) => (
-  <span style={{ color: '#909090' }}>{children}</span>
-)
 
 const styles = theme => ({
   /*arrowUp: {
@@ -179,10 +161,12 @@ class Start extends Component {
             <img
               src={Cloud}
               style={{ display: 'block', width: '20%', marginLeft: '55%' }}
+              alt='Cloud'
             />
             <img
               src={Cloud}
               style={{ display: 'block', width: '10%', marginLeft: '15%' }}
+              alt='Cloud'
             />
           </ParallaxLayer>
 
@@ -190,10 +174,12 @@ class Start extends Component {
             <img
               src={Cloud}
               style={{ display: 'block', width: '20%', marginLeft: '70%' }}
+              alt='Cloud'
             />
             <img
               src={Cloud}
               style={{ display: 'block', width: '20%', marginLeft: '40%' }}
+              alt='Cloud'
             />
           </ParallaxLayer>
 
@@ -201,10 +187,12 @@ class Start extends Component {
             <img
               src={Cloud}
               style={{ display: 'block', width: '10%', marginLeft: '10%' }}
+              alt='Cloud'
             />
             <img
               src={Cloud}
               style={{ display: 'block', width: '20%', marginLeft: '75%' }}
+              alt='Cloud'
             />
           </ParallaxLayer>
 
@@ -212,14 +200,17 @@ class Start extends Component {
             <img
               src={Cloud}
               style={{ display: 'block', width: '20%', marginLeft: '60%' }}
+              alt='Cloud'
             />
             <img
               src={Cloud}
               style={{ display: 'block', width: '25%', marginLeft: '30%' }}
+              alt='Cloud'
             />
             <img
               src={Cloud}
               style={{ display: 'block', width: '10%', marginLeft: '80%' }}
+              alt='Cloud'
             />
           </ParallaxLayer>
 
@@ -227,10 +218,12 @@ class Start extends Component {
             <img
               src={Cloud}
               style={{ display: 'block', width: '20%', marginLeft: '5%' }}
+              alt='Cloud'
             />
             <img
               src={Cloud}
               style={{ display: 'block', width: '15%', marginLeft: '75%' }}
+              alt='Cloud'
             />
           </ParallaxLayer>
 
@@ -243,7 +236,7 @@ class Start extends Component {
               justifyContent: 'center',
             }}>
             <Box className="box" style={{ width: '50%'}} pose={isVisible ? 'visible' : 'hidden'} >
-              <img src={Logo} />
+              <img src={Logo} alt='Logo' />
             </Box>
           </ParallaxLayer>
 
@@ -261,7 +254,7 @@ class Start extends Component {
             }}>
             <Tooltip title="Code">
               <HoverBox style={{ width: '100%'  }}>
-                <img src={CodeLink} style={{ width: '100%' }} onClick={() => history.push('/code')} />
+                <img src={CodeLink} style={{ width: '100%' }} onClick={() => history.push('/code')} alt='Code-link' />
               </HoverBox>
             </Tooltip>
           </ParallaxLayer>
@@ -278,7 +271,7 @@ class Start extends Component {
             }}>
             <Tooltip title="Photography">
               <HoverBox style={{ width: '100%'  }}>
-                <img src={CameraLink} style={{ width: '100%'  }} onClick={() => history.push('/photo')}/>
+                <img src={CameraLink} style={{ width: '100%'  }} onClick={() => history.push('/photo')} alt='Camera-link'/>
               </HoverBox>
             </Tooltip>
           </ParallaxLayer>
@@ -296,7 +289,7 @@ class Start extends Component {
             }}>
             <Tooltip title="Video">
               <HoverBox style={{ width: '100%'  }}>
-                <img src={VideoLink} style={{ width: '100%'  }} onClick={() => history.push('/video')}/>
+                <img src={VideoLink} style={{ width: '100%'  }} onClick={() => history.push('/video')} alt='Video-link'/>
               </HoverBox>
             </Tooltip>
           </ParallaxLayer>
@@ -311,7 +304,7 @@ class Start extends Component {
             }}>
             <Tooltip title="Drone">
               <HoverBox style={{ width: '100%'  }}>
-                <img src={DroneLink} style={{ width: '100%'  }} onClick={() => history.push('/drone')}/>
+                <img src={DroneLink} style={{ width: '100%'  }} onClick={() => history.push('/drone')} alt='Drone-link'/>
               </HoverBox>
             </Tooltip>
           </ParallaxLayer>
@@ -329,7 +322,7 @@ class Start extends Component {
             }}>
             <Tooltip title="Blog">
               <HoverBox style={{ width: '100%'  }}>
-                <img src={BlogLink} style={{ width: '100%'  }} onClick={() => history.push('/blog')}/>
+                <img src={BlogLink} style={{ width: '100%'  }} onClick={() => history.push('/blog')} alt='Blog-link'/>
               </HoverBox>
             </Tooltip>
           </ParallaxLayer>
@@ -347,7 +340,7 @@ class Start extends Component {
             }}>
             <Tooltip title="Contact">
               <HoverBox style={{ width: '100%'  }}>
-                <img src={url('earth')} style={{ width: '100%' }} onClick={() => history.push('/contact')}/>
+                <img src={url('earth')} style={{ width: '100%' }} onClick={() => history.push('/contact')} alt='Earth-link'/>
               </HoverBox>
             </Tooltip>
           </ParallaxLayer>

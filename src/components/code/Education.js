@@ -1,29 +1,18 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {withFirebase} from '../firebase'
 import Slider from "react-slick";
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
-
-import '../../App.css';
 import Tooltip from '@material-ui/core/Tooltip'
-import Chip from '@material-ui/core/Chip'
 import Typography from '@material-ui/core/es/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Paper from '@material-ui/core/Paper'
-import moment from 'moment'
 import Divider from '@material-ui/core/Divider'
-import Button from '@material-ui/core/Button'
-import Markdown from '../misc/Markdown'
 
+import '../../App.css';
 import RenderTooltip from './RenderTooltip'
-
 import EducationLogo from '../../static/code/education.svg'
 import TouchIcon from '@material-ui/icons/TouchApp';
-import LaunchIcon from '@material-ui/core/SvgIcon/SvgIcon'
-import {getLatestRepos} from '../misc/ApiRequests'
 
 const slickSettings = {
   dots: true,
@@ -294,7 +283,7 @@ class Education extends Component {
         {this.state.links ? (
           <div className={classes.body}>
             <div className={classes.titleDiv}>
-              <img src={EducationLogo} className={classes.titleIcon}/>
+              <img src={EducationLogo} className={classes.titleIcon} alt='Education-logo'/>
               <div className={classes.titleDivInner}>
                 <Typography variant='headline' color='primary' className={classes.header}>
                   Education

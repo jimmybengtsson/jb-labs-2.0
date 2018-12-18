@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Menu from '@material-ui/core/Menu';
@@ -12,6 +11,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import Divider from '@material-ui/core/Divider';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 import {LinkEnum, codeKnowledge} from '../../misc/Enums'
 import LinkGallery from './LinkGallery'
@@ -85,6 +86,13 @@ const styles = theme => ({
       width: '48%',
     },
   },
+  toggleButton: {
+    alignSelf: 'center',
+    marginTop: theme.spacing.unit *3
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit,
+  },
 });
 
 class Links extends Component {
@@ -102,7 +110,8 @@ class Links extends Component {
       extra: '',
       loaded: true,
       knowledge: false,
-      update: false
+      update: false,
+      showGallery: false
     }
   }
 
@@ -125,6 +134,10 @@ class Links extends Component {
     }, () => {
       console.log(this.state)
     })
+  };
+
+  toggleGallery = toggle => {
+    this.setState({ showGallery: toggle });
   };
 
   handleSelectChange = event => {
@@ -360,7 +373,30 @@ class Links extends Component {
               )}
             </div>
             <Divider />
-            <LinkGallery state={this.state} updateLinkState={this.updateLinkState}/>
+            {this.state.showGallery ? (
+              <div>
+                <Button type="submit"
+                        color="primary"
+                        autoFocus
+                        className={classes.toggleButton}
+                        onClick={() => this.toggleGallery(false)}
+                >
+                  Toggle Links
+                  <ExpandLessIcon className={classes.rightIcon} />
+                </Button>
+                <LinkGallery state={this.state} updateLinkState={this.updateLinkState}/>
+              </div>
+            ) : (
+              <Button type="submit"
+                      color="primary"
+                      autoFocus
+                      className={classes.toggleButton}
+                      onClick={() => this.toggleGallery(true)}
+              >
+                Toggle Links
+                <ExpandMoreIcon className={classes.rightIcon} />
+              </Button>
+            )}
           </div>
         ) : (
           <div className={classes.progressDiv}>

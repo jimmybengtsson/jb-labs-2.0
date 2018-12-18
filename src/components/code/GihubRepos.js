@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Slider from "react-slick";
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import DialogActions from '@material-ui/core/DialogActions';
-import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import Dialog from '@material-ui/core/Dialog';
@@ -298,7 +292,7 @@ class GithubRepos extends Component {
         {this.state.loaded ? (
           <div className={classes.body}>
             <div className={classes.titleDiv}>
-              <img src={GithubLogo} className={classes.titleIcon}/>
+              <img src={GithubLogo} className={classes.titleIcon} alt='Github-logo'/>
               <div className={classes.titleDivInner}>
                 <Typography variant='headline' color='primary' className={classes.header}>
                   Public Github Repos

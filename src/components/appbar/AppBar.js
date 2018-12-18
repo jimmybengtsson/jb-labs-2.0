@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {withRouter, Link, Redirect} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import {withFirebase} from '../firebase'
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -31,7 +31,6 @@ import DashboardIcon from '@material-ui/icons/Person';
 import LogoutIcon from '@material-ui/icons/Close';
 
 import Login from '../auth/Login'
-const Logo = require('../../static/startImg/logo.svg')
 
 const drawerWidth = 240;
 
@@ -193,7 +192,7 @@ class Appbar extends Component {
 
   render() {
 
-    const { classes, toggleDrawer } = this.props;
+    const { classes } = this.props;
 
     console.log(this.props.state)
     return (

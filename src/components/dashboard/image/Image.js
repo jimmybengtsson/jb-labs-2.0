@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography';
@@ -10,10 +9,11 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {withFirebase} from '../../firebase'
 import CircularProgress from '@material-ui/core/CircularProgress';
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Divider from '@material-ui/core/Divider';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 import Gallery from './Gallery'
 import { imageMenu } from '../../misc/Enums'
@@ -100,6 +100,13 @@ const styles = theme => ({
   input: {
     display: 'none',
   },
+  toggleButton: {
+    alignSelf: 'center',
+    marginTop: theme.spacing.unit *3
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit,
+  },
 });
 
 class Image extends Component {
@@ -122,7 +129,7 @@ class Image extends Component {
       imageTitle: '',
       imageDescription: '',
       imagePublish: false,
-
+      showGallery: false
     }
   }
 
@@ -149,6 +156,11 @@ class Image extends Component {
 
   handleClose = () => {
     this.setState({ anchorEl: null });
+  };
+
+
+  toggleGallery = toggle => {
+    this.setState({ showGallery: toggle });
   };
 
   handleUploadStart = () => {
@@ -328,7 +340,30 @@ class Image extends Component {
               </form>
             </div>
             <Divider />
-            <Gallery state={this.state}/>
+            {this.state.showGallery ? (
+              <div>
+                <Button type="submit"
+                        color="primary"
+                        autoFocus
+                        className={classes.toggleButton}
+                        onClick={() => this.toggleGallery(false)}
+                >
+                  Toggle Gallery
+                  <ExpandLessIcon className={classes.rightIcon} />
+                </Button>
+                <Gallery state={this.state}/>
+              </div>
+            ) : (
+              <Button type="submit"
+                      color="primary"
+                      autoFocus
+                      className={classes.toggleButton}
+                      onClick={() => this.toggleGallery(true)}
+              >
+                Toggle Gallery
+                <ExpandMoreIcon className={classes.rightIcon} />
+              </Button>
+            )}
           </div>
 
         ) : (

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {withFirebase} from '../firebase'
@@ -8,19 +7,7 @@ import ImageGallery from 'react-image-gallery';
 
 import '../../App.css';
 import "react-image-gallery/styles/css/image-gallery.css";
-import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/es/Typography'
-import moment from 'moment'
-import Divider from '@material-ui/core/Divider'
-import Button from '@material-ui/core/Button'
-
-const slickSettings = {
-  dots: false,
-  infinite: true,
-  speed: 500,
-  initialSlide: 0,
-
-};
 
 const styles = theme => ({
   root: {
@@ -109,7 +96,7 @@ class ImageView extends Component {
   renderImage = (item) => {
     return (
       <div className={this.props.classes.photoDiv}>
-        <img src={item.original}/>
+        <img src={item.original} alt='Image'/>
         <div className={this.props.classes.photoDesc}>
           <Typography variant='headline' className={this.props.classes.photoText}>
             {item.description}

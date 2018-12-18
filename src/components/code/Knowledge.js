@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { withFirebase} from '../firebase'
@@ -8,7 +7,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import '../../App.css';
 import Chip from '@material-ui/core/Chip'
-import Button from '@material-ui/core/Button'
 import RenderTooltip from './RenderTooltip'
 
 import KnowledgeLogo from '../../static/code/skills.svg'
@@ -203,7 +201,7 @@ class Knowledge extends Component {
         {this.state.links ? (
           <div className={classes.root}>
             <div className={classes.titleDiv}>
-              <img src={KnowledgeLogo} className={classes.titleIcon}/>
+              <img src={KnowledgeLogo} className={classes.titleIcon} alt='Knowledge-logo'/>
               <div className={classes.titleDivInner}>
                 <Typography variant='headline' color='primary' className={classes.header}>
                   Knowledge
