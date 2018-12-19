@@ -128,6 +128,12 @@ const styles = theme => ({
   listItemText: {
     color: 'white',
   },
+  closeButton: {
+
+  },
+  closeIcon: {
+    color: 'white'
+  }
 });
 
 class Appbar extends Component {
@@ -199,7 +205,7 @@ class Appbar extends Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
-          position="fixed"
+          position="relative"
           className={classNames(classes.appBar, {
             [classes.appBarShift]: this.state.open,
           })}
@@ -238,8 +244,22 @@ class Appbar extends Component {
           open={this.state.open}
         >
           <div className={classes.toolbar}>
-            <IconButton onClick={this.handleDrawerClose} >
-              <CloseDrawerIcon />
+            <IconButton onClick={this.handleDrawerClose}
+                        className={classNames(classes.closeButton, {
+                          [classes.hide]: !this.state.open,
+                        })}
+            >
+              <CloseDrawerIcon className={classes.closeIcon}/>
+            </IconButton>
+            <IconButton
+              aria-label="Open drawer"
+              color='inherit'
+              onClick={this.handleDrawerOpen}
+              className={classNames(classes.menuButton, {
+                [classes.hide]: this.state.open,
+              })}
+            >
+              <MenuIcon />
             </IconButton>
           </div>
           <Divider />

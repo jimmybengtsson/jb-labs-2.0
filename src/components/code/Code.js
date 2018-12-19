@@ -27,7 +27,15 @@ const styles = theme => ({
     },
   },
   fillDiv: {
-    height: '50%',
+    height: '100%',
+    backgroundColor: theme.palette.backgroundColor
+  },
+  fillDivTwo: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 80,
     backgroundColor: theme.palette.backgroundColor
   },
   swipe: {
@@ -111,10 +119,44 @@ class Code extends Component {
       .map((it, i) => ({ ...it, i }))
       .filter(it => it.show);
 
+
+    console.log(divArr)
+    let isMoving = divArr.length <= 0;
+    console.log(isMoving)
+
     const { classes } = this.props;
 
     return (
       <div className={classes.root}>
+        <div ref={ (divElement) => this.divElement = divElement}
+             className={isMoving ? classes.fillDiv : classes.fillDivTwo}
+        >
+          <DraggableDiv renderDraggable={this.renderDraggable}
+                        state={this.state}
+                        logo={GithubLogo}
+                        toggleElement={this.toggleElement}
+                        name='githubRepos'
+                        first={true}
+                        isMoving={isMoving}
+          />
+          <DraggableDiv renderDraggable={this.renderDraggable}
+                        state={this.state}
+                        logo={KnowledgeLogo}
+                        toggleElement={this.toggleElement}
+                        name='knowledge'
+                        first={false}
+                        isMoving={isMoving}
+          />
+          <DraggableDiv renderDraggable={this.renderDraggable}
+                        state={this.state}
+                        logo={EducationLogo}
+                        toggleElement={this.toggleElement}
+                        name='education'
+                        first={false}
+                        isMoving={isMoving}
+          />
+        </div>
+        <Divider/>
         <PoseGroup ref={ (divElement) => this.topElement = divElement}>
           {divArr.map((it, i) => {
             return (
@@ -125,31 +167,6 @@ class Code extends Component {
 
           })}
         </PoseGroup>
-        <div ref={ (divElement) => this.divElement = divElement}
-             className={classes.fillDiv}
-        >
-          <DraggableDiv renderDraggable={this.renderDraggable}
-                        state={this.state}
-                        logo={GithubLogo}
-                        toggleElement={this.toggleElement}
-                        name='githubRepos'
-                        first={true}
-          />
-          <DraggableDiv renderDraggable={this.renderDraggable}
-                        state={this.state}
-                        logo={KnowledgeLogo}
-                        toggleElement={this.toggleElement}
-                        name='knowledge'
-                        first={false}
-          />
-          <DraggableDiv renderDraggable={this.renderDraggable}
-                        state={this.state}
-                        logo={EducationLogo}
-                        toggleElement={this.toggleElement}
-                        name='education'
-                        first={false}
-          />
-        </div>
       </div>
     );
   }

@@ -9,6 +9,7 @@ import ImageView from './ImageView'
 import DraggableDiv from '../misc/DraggableDiv'
 import Instagram from '../misc/Instagram'
 import '../../App.css';
+import Divider from '@material-ui/core/Divider'
 
 const Swipeable = posed.li({
   enter: { opacity: 1 },
@@ -23,7 +24,15 @@ const styles = theme => ({
     },
   },
   fillDiv: {
-    height: '50%',
+    height: '100%',
+    backgroundColor: theme.palette.backgroundColor
+  },
+  fillDivTwo: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 80,
     backgroundColor: theme.palette.backgroundColor
   },
   swipe: {
@@ -99,9 +108,35 @@ class Photo extends Component {
 
     const { classes } = this.props;
 
+    console.log(divArr)
+    let isMoving = divArr.length <= 0;
+    console.log(isMoving)
 
     return (
       <div className={classes.root}>
+        <div ref={ (divElement) => this.divElement = divElement}
+             className={isMoving ? classes.fillDiv : classes.fillDivTwo}
+        >
+          <DraggableDiv renderDraggable={this.renderDraggable}
+                        state={this.state}
+                        logo={ImagesLogo}
+                        toggleElement={this.toggleElement}
+                        name='imageView'
+                        className={classes.draggable}
+                        first={true}
+                        isMoving={isMoving}
+          />
+          <DraggableDiv renderDraggable={this.renderDraggable}
+                        state={this.state}
+                        logo={InstagramLogo}
+                        toggleElement={this.toggleElement}
+                        name='instagram'
+                        className={classes.draggable}
+                        first={false}
+                        isMoving={isMoving}
+          />
+        </div>
+        <Divider/>
         <PoseGroup>
           {divArr.map((it, i) => {
             return (
@@ -112,26 +147,6 @@ class Photo extends Component {
 
           })}
         </PoseGroup>
-        <div ref={ (divElement) => this.divElement = divElement}
-             className={classes.fillDiv}
-        >
-          <DraggableDiv renderDraggable={this.renderDraggable}
-                        state={this.state}
-                        logo={ImagesLogo}
-                        toggleElement={this.toggleElement}
-                        name='imageView'
-                        className={classes.draggable}
-                        first={true}
-          />
-          <DraggableDiv renderDraggable={this.renderDraggable}
-                        state={this.state}
-                        logo={InstagramLogo}
-                        toggleElement={this.toggleElement}
-                        name='instagram'
-                        className={classes.draggable}
-                        first={false}
-          />
-        </div>
       </div>
     );
   }

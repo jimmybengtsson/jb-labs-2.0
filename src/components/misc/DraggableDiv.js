@@ -10,12 +10,17 @@ const styles = theme => ({
   },
   draggable: {
     width: 70,
-    height: 70
+    height: 70,
   },
   draggableTwo: {
     width: 70,
     height: 70,
     marginTop: '-70px !important'
+  },
+  draggableStill: {
+    width: 50,
+    height: 50,
+    margin: theme.spacing.unit * 5
   }
 });
 
@@ -92,13 +97,45 @@ class DraggableDiv extends Component {
   }
 
   startInterval = () => {
+    clearInterval(this.interval)
     this.interval = setInterval(() => {
       this.moveDraggable()
     }, 20);
   }
 
+  checkIfMoving = () => {
+    if (this.props.isMoving === true) {
+      this.setState({
+        moving: true,
+      })
+      this.startInterval()
+    } else {
+      this.stopInterval()
+      this.setState({
+        moving: false
+      })
+    }
+  }
   componentDidMount() {
-    this.startInterval()
+    this.checkIfMoving()
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    if(nextProps.isMoving !== this.props.isMoving) {
+      clearInterval(this.interval)
+      this.checkIfMoving()
+    }
+  }
+
+  componentDidUpdate(nextProps, nextState, nextContext) {
+    if(nextProps.isMoving !== this.props.isMoving) {
+      clearInterval(this.interval)
+      this.checkIfMoving()
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
   }
 
   render() {
@@ -106,7 +143,8 @@ class DraggableDiv extends Component {
     const { classes, renderDraggable, logo } = this.props;
     const {deltaPosition, controlledPosition} = this.state;
 
-    return (
+    if (this.state.moving === true) {
+      return (
         <Draggable bounds="parent" position={controlledPosition} >
           <div className={this.props.first ? classes.draggable : classes.draggableTwo}
                onMouseOver={this.stopInterval}
@@ -116,7 +154,18 @@ class DraggableDiv extends Component {
             {renderDraggable(logo)}
           </div>
         </Draggable>
-    );
+      );
+    } else {
+      return (
+        <Draggable bounds="parent" position={deltaPosition} >
+          <div className={classes.draggableStill}
+               onClick={() => this.props.toggleElement(this.props.name)}
+          >
+            {renderDraggable(logo)}
+          </div>
+        </Draggable>
+      );
+    }
   }
 }
 

@@ -23,20 +23,19 @@ const styles = theme => ({
     backgroundColor: theme.palette.backgroundColor,
   },
   rootTwo: {
-    height: window.innerHeight,
+    height: '100%',
   },
   appBody: {
-    paddingTop: theme.spacing.unit * 7.5,
     paddingLeft: theme.spacing.unit,
     paddingRight: theme.spacing.unit * 6,
     display: 'flex',
     justifyContent: 'flex-start',
     flexDirection: 'column',
     width: '100%',
-    height: '100% !important',
+    height: 'calc(100% - ' + theme.spacing.unit * 7.5 + 'px)',
     [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing.unit * 9,
       paddingRight: theme.spacing.unit * 10,
+      height: 'calc(100% - ' + theme.spacing.unit * 8.5 + 'px)',
     },
     [theme.breakpoints.up('md')]: {
       width: 960,
