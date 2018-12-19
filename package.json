@@ -16,6 +16,8 @@
     "react": "^16.6.3",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.6.3",
+    "react-draggable": "^3.0.5",
+    "react-height": "^3.0.0",
     "react-image-gallery": "^0.8.12",
     "react-pose": "^4.0.4",
     "react-router-dom": "^4.3.1",

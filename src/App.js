@@ -19,18 +19,21 @@ import './App.css';
 
 const styles = theme => ({
   root: {
-    minHeight: '100%',
+    height: '100%',
     backgroundColor: theme.palette.backgroundColor,
+  },
+  rootTwo: {
+    height: window.innerHeight,
   },
   appBody: {
     paddingTop: theme.spacing.unit * 7.5,
     paddingLeft: theme.spacing.unit,
     paddingRight: theme.spacing.unit * 6,
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     flexDirection: 'column',
     width: '100%',
-    height: '100%',
+    height: '100% !important',
     [theme.breakpoints.up('sm')]: {
       paddingTop: theme.spacing.unit * 9,
       paddingRight: theme.spacing.unit * 10,
@@ -121,7 +124,7 @@ class App extends Component {
         {location.pathname === '/' ? (
           <Route path='/' exact component={() => <Start state={this.state}/>}/>
         ) : (
-          <div>
+          <div className={classes.rootTwo}>
             <AppBar state={this.state} toggleDrawer={this.toggleDrawer} />
             <div className={classes.appBody}>
               <Route path='/code' exact component={() => <Code state={this.state}/>}/>
