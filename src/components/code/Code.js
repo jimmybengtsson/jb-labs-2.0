@@ -22,20 +22,20 @@ const Swipeable = posed.li({
 const styles = theme => ({
   root: {
     height: '100%',
-    [theme.breakpoints.up('md')]: {
-      paddingRight: theme.spacing.unit*5
-    },
   },
   fillDiv: {
-    height: '100%',
-    backgroundColor: theme.palette.backgroundColor
+    height: 'calc(100vh - ' + theme.spacing.unit * 5.1 + 'px)',
+    backgroundColor: theme.palette.backgroundColor,
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 'calc(100% - ' + theme.spacing.unit * 6.1 + 'px)',
+    },
   },
   fillDivTwo: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 80,
+    minHeight: 60,
     backgroundColor: theme.palette.backgroundColor
   },
   swipe: {

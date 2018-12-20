@@ -40,61 +40,30 @@ const styles = theme => ({
   },
   appBar: {
     backgroundColor: theme.palette.appBarColor,
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginRight: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+    height: theme.spacing.unit * 4,
+    justifyContent: 'center',
+    [theme.breakpoints.up('sm')]: {
+      height: theme.spacing.unit * 5,
+    },
   },
   menuButton: {
-    marginLeft: 36,
-    marginRight: 12,
-    [theme.breakpoints.down('xs')]: {
-      marginRight: -1
+    marginLeft: theme.spacing.unit,
+    marginRight: -theme.spacing.unit,
+    [theme.breakpoints.up('sm')]: {
+
     },
   },
   hide: {
     display: 'none',
   },
   drawer: {
-    width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
-  },
-  drawerOpen: {
-    backgroundColor: theme.palette.drawerColor,
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerClose: {
-    backgroundColor: theme.palette.drawerColor,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: 'hidden',
-    width: theme.spacing.unit * 5 + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9 + 1,
-    },
   },
   toolbar: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
   },
   content: {
     flexGrow: 1,
@@ -115,24 +84,25 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit *2,
   },
   listIcon: {
-    color: 'white',
-    [theme.breakpoints.down('xs')]: {
-      marginLeft: -theme.spacing.unit
-    },
+    color: theme.palette.appBarColor,
   },
   listIconLast: {
-    [theme.breakpoints.down('xs')]: {
-      marginLeft: -theme.spacing.unit
-    },
+
   },
   listItemText: {
-    color: 'white',
+    color: theme.palette.appBarColor,
   },
   closeButton: {
 
   },
   closeIcon: {
-    color: 'white'
+    color: theme.palette.appBarColor,
+  },
+  list: {
+    width: '100vw',
+    [theme.breakpoints.up('sm')]: {
+      width: 200,
+    },
   }
 });
 
@@ -206,11 +176,9 @@ class Appbar extends Component {
         <CssBaseline />
         <AppBar
           position="relative"
-          className={classNames(classes.appBar, {
-            [classes.appBarShift]: this.state.open,
-          })}
+          className={classes.appBar}
         >
-          <Toolbar disableGutters={!this.state.open}>
+          <Toolbar >
             <Typography className={classes.title} variant="h5" color='inherit' noWrap component={Link}
                         to='/'>
               JB-Labs
@@ -220,9 +188,7 @@ class Appbar extends Component {
               aria-label="Open drawer"
               color='inherit'
               onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, {
-                [classes.hide]: this.state.open,
-              })}
+              className={classes.menuButton}
             >
               <MenuIcon />
             </IconButton>
@@ -230,40 +196,18 @@ class Appbar extends Component {
         </AppBar>
         <Drawer
           anchor={'right'}
-          variant="permanent"
-          className={classNames(classes.drawer, {
-            [classes.drawerOpen]: this.state.open,
-            [classes.drawerClose]: !this.state.open,
-          })}
-          classes={{
-            paper: classNames({
-              [classes.drawerOpen]: this.state.open,
-              [classes.drawerClose]: !this.state.open,
-            }),
-          }}
+          className={classes.drawer}
           open={this.state.open}
         >
           <div className={classes.toolbar}>
             <IconButton onClick={this.handleDrawerClose}
-                        className={classNames(classes.closeButton, {
-                          [classes.hide]: !this.state.open,
-                        })}
+                        className={classes.closeButton}
             >
               <CloseDrawerIcon className={classes.closeIcon}/>
             </IconButton>
-            <IconButton
-              aria-label="Open drawer"
-              color='inherit'
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, {
-                [classes.hide]: this.state.open,
-              })}
-            >
-              <MenuIcon />
-            </IconButton>
           </div>
           <Divider />
-          <List >
+          <List className={classes.list}>
             <ListItem button key={'Start'} component={Link} to={'/'} onClick={this.handleDrawerClose} >
               <ListItemIcon className={classes.listIcon}>
                 <HomeIcon />
@@ -317,7 +261,7 @@ class Appbar extends Component {
           <Divider />
           <div className={classes.grow} />
 
-          <List >
+          <List className={classes.list}>
             {this.renderLogoutButton(classes)}
             <ListItem button key={'Dashboard'} onClick={this.handleLoginButton} className={classes.lastIcon}>
               <ListItemIcon className={classes.listIcon}>

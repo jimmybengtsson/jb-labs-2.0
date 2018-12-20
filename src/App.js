@@ -19,28 +19,26 @@ import './App.css';
 
 const styles = theme => ({
   root: {
-    height: '100%',
+    minHeight: '100%',
     backgroundColor: theme.palette.backgroundColor,
   },
   rootTwo: {
-    height: '100%',
+    minHeight: '100%',
   },
   appBody: {
     paddingLeft: theme.spacing.unit,
-    paddingRight: theme.spacing.unit * 6,
+    paddingRight: theme.spacing.unit,
     display: 'flex',
     justifyContent: 'flex-start',
     flexDirection: 'column',
     width: '100%',
-    height: 'calc(100% - ' + theme.spacing.unit * 7.5 + 'px)',
+    minHeight: 'calc(100% - ' + theme.spacing.unit * 4.1 + 'px)',
     [theme.breakpoints.up('sm')]: {
-      paddingRight: theme.spacing.unit * 10,
-      height: 'calc(100% - ' + theme.spacing.unit * 8.5 + 'px)',
+      minHeight: 'calc(100% - ' + theme.spacing.unit * 5.1 + 'px)',
     },
     [theme.breakpoints.up('md')]: {
       width: 960,
       margin: 'auto',
-      paddingRight: theme.spacing.unit * 5,
     },
 
   },

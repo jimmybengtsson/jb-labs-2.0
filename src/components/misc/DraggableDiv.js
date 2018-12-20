@@ -9,18 +9,18 @@ const styles = theme => ({
   root: {
   },
   draggable: {
-    width: 70,
-    height: 70,
+    width: 60,
+    height: 60,
   },
   draggableTwo: {
-    width: 70,
-    height: 70,
-    marginTop: '-70px !important'
+    width: 60,
+    height: 60,
+    marginTop: '-60px !important'
   },
   draggableStill: {
     width: 50,
     height: 50,
-    margin: theme.spacing.unit * 5
+    margin: theme.spacing.unit * 2
   }
 });
 
@@ -35,7 +35,7 @@ class DraggableDiv extends Component {
         x: 0, y: 0
       },
       controlledPosition: {
-        x: Math.floor(Math.random() * 300) + 1, y: Math.floor(Math.random() * 300) + 1, oldX: Math.floor(Math.random() * 300) + 1  , oldY: Math.floor(Math.random() * 300) + 1,
+        x: Math.floor(Math.random() * 150) + 1, y: Math.floor(Math.random() * 400) + 1, oldX: Math.floor(Math.random() * 250) + 1  , oldY: Math.floor(Math.random() * 400) + 1,
       }
     }
   }
