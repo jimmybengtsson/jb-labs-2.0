@@ -15,8 +15,8 @@ import GithubLogo from '../../static/social/github.svg'
 import KnowledgeLogo from '../../static/code/skills.svg'
 
 const Swipeable = posed.li({
-  enter: { opacity: 1 },
-  exit: { opacity: 0 }
+  enter: { opacity: 1, delay: 300 },
+  exit: { opacity: 0, transition: { duration: 50 } }
 });
 
 const styles = theme => ({
@@ -24,10 +24,10 @@ const styles = theme => ({
     height: '100%',
   },
   fillDiv: {
-    height: 'calc(100vh - ' + theme.spacing.unit * 5.1 + 'px)',
+    height: 'calc(100vh - ' + theme.spacing.unit * 4.5 + 'px)',
     backgroundColor: theme.palette.backgroundColor,
     [theme.breakpoints.up('sm')]: {
-      minHeight: 'calc(100% - ' + theme.spacing.unit * 6.1 + 'px)',
+      minHeight: 'calc(100% - ' + theme.spacing.unit * 5.5 + 'px)',
     },
   },
   fillDivTwo: {

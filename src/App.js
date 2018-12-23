@@ -28,6 +28,7 @@ const styles = theme => ({
   appBody: {
     paddingLeft: theme.spacing.unit,
     paddingRight: theme.spacing.unit,
+    paddingTop: theme.spacing.unit * 4.1,
     display: 'flex',
     justifyContent: 'flex-start',
     flexDirection: 'column',

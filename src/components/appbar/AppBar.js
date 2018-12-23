@@ -175,7 +175,7 @@ class Appbar extends Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
-          position="relative"
+          position="absolute"
           className={classes.appBar}
         >
           <Toolbar >

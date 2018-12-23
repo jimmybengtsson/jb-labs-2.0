@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {withFirebase} from '../firebase'
+import {withFirebase} from '../../firebase'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ImageGallery from 'react-image-gallery';
 
-import '../../App.css';
+import ImageParallax from './ImageParallax'
+import ImageStart from './ImageStart'
+import '../../../App.css';
 import "react-image-gallery/styles/css/image-gallery.css";
 import Typography from '@material-ui/core/es/Typography'
 
@@ -54,8 +56,13 @@ class ImageView extends Component {
 
     this.props.firebase.getImageUrls('db/images/photography').then((response) => {
 
-      console.log(response)
       let tempArr = []
+
+      for (let i = response.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [response[i], response[j]] = [response[j], response[i]];
+      }
+
       for (let i = 0; i < response.length; i++) {
         if (response[i].publish === true) {
 
@@ -74,17 +81,12 @@ class ImageView extends Component {
       let saveObj = {
         date: Date.now(),
         links: tempArr,
+        parallax: tempArr
       }
 
-      let saveArr = []
       localStorage.setItem('photoImages', JSON.stringify(saveObj))
 
-      for (let i = 0; i < tempArr.length; i++) {
-        tempArr[i].renderItem = this.renderImage.bind(this)
-
-        saveArr.push(tempArr[i])
-      }
-      this.setState({images: saveArr});
+      this.setState({images: tempArr, parallax: tempArr});
 
     }).catch((err) => {
       this.setState({
@@ -116,14 +118,9 @@ class ImageView extends Component {
       if (links.date < hourAgo) {
         this.getImageUrls()
       } else {
-        let tempArr = []
-        for (let i = 0; i < links.links.length; i++) {
-          links.links[i].renderItem = this.renderImage.bind(this)
-
-          tempArr.push(links.links[i])
-        }
         this.setState({
-          images: tempArr,
+          images: links.links,
+          parallax: links.parallax
         }, () => {
           console.log(this.state)
         })
@@ -144,17 +141,8 @@ class ImageView extends Component {
       <div className={classes.root}>
         {this.state.images ? (
           <div>
-            <ImageGallery ref={i => this._imageGallery = i}
-                          lazyLoad={false}
-                          items={this.state.images}
-                          showNav={true}
-                          showBullets={false}
-                          showPlayButton={false}
-                          showIndex={false}
-                          showFullscreenButton={false}
-                          infinite
-
-            />
+            <ImageStart parallax={this.state.parallax}/>
+            <ImageParallax parallax={this.state.parallax}/>
           </div>
           ) : (
           <div className={classes.progressDiv}>
